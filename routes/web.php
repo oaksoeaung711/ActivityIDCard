@@ -1,18 +1,20 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BatchController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
+Route::view('login','auth.login')->name('login');
+Route::view('register','auth.register')->name('register');
+Route::post('/login',[AuthController::class,'login'])->name('auth.login');
+Route::post('/register',[AuthController::class,'register'])->name('auth.register');
+Route::get('/logout',[AuthController::class,'logout'])->name('auth.logout');
+Route::middleware('auth')->group(function(){
+    Route::view('/','user.index')->name('home');
+    Route::resource('/programs',ProgramController::class);
+    Route::resource('/batches',BatchController::class);
+    Route::resource('/students',StudentController::class);
 });
