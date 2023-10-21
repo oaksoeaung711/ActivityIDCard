@@ -17,15 +17,18 @@ return new class extends Migration
             $table->foreign('program_id')->references('id')->on('programs')->nullOnDelete();
             $table->unsignedBigInteger('batch_id')->nullable();
             $table->foreign('batch_id')->references('id')->on('batches')->nullOnDelete();
+            $table->string('member_id')->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('phone');
+            $table->string('campus');
             $table->string('guardianname');
             $table->string('dob');
             $table->string('emergencyphone1');
             $table->string('emergencyphone2');
             $table->string('schoolemergencyphone');
             $table->string('studentprofilepicture')->nullable();
+            $table->string('dateofissue');
             $table->timestamps();
         });
     }

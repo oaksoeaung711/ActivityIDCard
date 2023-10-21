@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('remove:caches', function () {
+    Artisan::call("cache:clear");
+    Artisan::call("view:clear");
+    Artisan::call("clear-compiled");
+    Artisan::call("config:clear");
+    Artisan::call("route:clear");
+})->purpose('To clear all caches');

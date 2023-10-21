@@ -17,4 +17,8 @@ Route::middleware('auth')->group(function(){
     Route::resource('/programs',ProgramController::class);
     Route::resource('/batches',BatchController::class);
     Route::resource('/students',StudentController::class);
+    Route::get('/masscreate/students',[StudentController::class,'masscreate'])->name('students.masscreate');
+    Route::post('/massstore/students',[StudentController::class,'massstore'])->name('students.massstore');
 });
+
+Route::get('/print/{memberid}',[IndexController::class,'print'])->name('students.print');

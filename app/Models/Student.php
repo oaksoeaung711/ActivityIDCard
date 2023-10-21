@@ -16,11 +16,18 @@ class Student extends Model
         'name',
         'email',
         'phone',
+        'campus',
         'guardianname',
         'dob',
         'emergencyphone1',
         'emergencyphone2',
         'schoolemergencyphone',
         'studentprofilepicture',
+        'dateofissue',
     ];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 }
